@@ -1,0 +1,14 @@
+.bg-light {
+  background-color: #9E1A1A !important
+}
+
+.navbar-dark .navbar-toggler {
+  color: white;
+  border: none;
+}
+
+.navbar-dark .navbar-brand{
+  color:white
+}
+
+
