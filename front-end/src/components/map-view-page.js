@@ -1,37 +1,25 @@
-import { useEffect } from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import GoogleMapReact from 'google-map-react'
+import GoogleMapReact  from 'google-map-react'
 import { InputGroup, FormControl, Container, Row, Col } from "react-bootstrap"
 import "./map-view-style.css"
 
-import { getPlacesDataGoogle } from '../actions/actions-index'
+import Search from './search-places/search.js'
 
 const MapViewPage = ({center, zoom}) => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getPlacesDataGoogle())
-  }, [])
+
 
   return (
     <Container>
-     <Row>
-      <Col sm>
-       <InputGroup className="mb-3 mt-3">
-          <FormControl
-            placeholder="Search by city or zip-code"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </InputGroup>
-      </Col>
-    </Row>
+      <Search />
     <div className="map row">
     <GoogleMapReact
       bootstrapURLKeys={{
-       key: 'AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk'
+       key: 'AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk',
       }}
       defaultCenter= { 
         {
@@ -39,6 +27,11 @@ const MapViewPage = ({center, zoom}) => {
         }
        }
       defaultZoom= { 13 }
+
+      onGoogleApiLoaded={({ maps }) => {
+        console.log(maps.places);
+      }}
+    
     >
     </GoogleMapReact>
     </div>
