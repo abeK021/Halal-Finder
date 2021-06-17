@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@iconify/react": "^1.1.4",
     "@react-google-maps/api": "^2.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -10,9 +11,11 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "google-map-react": "^2.1.9",
+    "lodash.isempty": "^4.4.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
+    "react-google-places-autocomplete": "^3.3.1",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify-icons/map": "^1.1.0"
   }
 }
