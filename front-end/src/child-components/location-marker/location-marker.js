@@ -1,20 +1,26 @@
 
 import { Icon, InlineIcon } from '@iconify/react';
 import postalCodePrefix from '@iconify-icons/map/postal-code-prefix';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 
 
 
-const LocationMarker = ({lat, lng, onClick}) => {
+const LocationMarker = ({info, onClick}) => {
 
-  const handlemarkerClick = (e) => {
-    console.log(e)
-  }
+
 
   return (
+    
+  <OverlayTrigger
+    placement="right"
+    delay={{ show: 250, hide: 400 }}  
+  >
     <div className="location-marker" onClick={onClick}> 
       <Icon icon={postalCodePrefix} className="location-icon" ></Icon>
     </div>
+  </OverlayTrigger>
+    
   )
 }
 

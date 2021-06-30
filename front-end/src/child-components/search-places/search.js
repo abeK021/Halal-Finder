@@ -8,13 +8,9 @@ const Search = () => {
 
   const [input, inputChange] = useState()
    
-  useEffect(() => {
-
-  }, [])
 
   const handleOnChange = (e) => {
     inputChange(e.target.value)
-    console.log(input)
   }
 
 

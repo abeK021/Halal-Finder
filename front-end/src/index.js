@@ -6,14 +6,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import promise from 'redux-promise'
 
 import RootReducer from "./reducers/reducer-index";
-import AppContainer from "./components/App";
+import App from './parent-components/App'
 
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(RootReducer)}>
-    <AppContainer />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

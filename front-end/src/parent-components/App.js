@@ -1,8 +1,8 @@
 import MapViewPage from "./map-view-page"
-import NavBar from "./navbar/nav-bar"
+import NavBar from "../child-components/navbar/nav-bar"
 
 
-const AppContainer = () => {
+const App = () => {
   return (
     <>
     <NavBar />
@@ -11,4 +11,4 @@ const AppContainer = () => {
   )
 }
 
-export default AppContainer
+export default App
