@@ -1,0 +1,8 @@
+.img-container{
+  height: 48px;
+  max-width: 87px
+}
+
+.active-item{
+  background-color: red;
+}

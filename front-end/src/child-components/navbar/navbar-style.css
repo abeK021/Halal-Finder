@@ -11,4 +11,13 @@
   color:white
 }
 
+.navbar-dark .navbar-nav .nav-link{
+  color: rgba(255, 255, 255, 1)
+}
+
+.Offcanvas-close{
+  font-size: x-large;
+  text-align: right;
+  margin-right: 40px;
+}
 

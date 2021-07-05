@@ -27,12 +27,27 @@ router.delete('/delete', (req, res) => {
 });
 
 router.get('/restaurants', async (req, res) => {
+  const options = {
+    pageNum: req.query.page || 1,
+    pageLimit: 5,
+  };
+
   const [docs, totalDocs] = await Promise.all([
-    Restaurants.find({}),
+    Restaurants.find({})
+      .skip(options.pageLimit * options.pageNum - options.pageLimit)
+      .limit(options.pageLimit),
+
     Restaurants.find({}).countDocuments(),
   ]);
 
-  res.json([docs, totalDocs]);
+  const totalPages = Math.ceil(totalDocs / options.pageLimit);
+
+  res.json({
+    docs,
+    totalDocs,
+    totalPages,
+    pageNumber: options.pageNum,
+  });
 });
 
 module.exports = router;

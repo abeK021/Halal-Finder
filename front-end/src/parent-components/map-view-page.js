@@ -14,34 +14,36 @@ import LocationInfoBox from '../child-components/location-info/location-info'
 
 
 
-const MapViewPage = ({center, zoom}) => {
+const MapViewTab = ({center, zoom}) => {
 
   const [value, setValue] = useState(null);
 
-
-  const data = useSelector(state => state.restaurants.restaurants.data)
+  const [isActive, setIsActive] = useState(false)
+  
+  const data = useSelector(state => state.restaurants.restaurants)
   const dispatch = useDispatch()
   const [mapLocation, setLocation] = useState({lat: 35.7915, lng: -78.7811})
   const [locationInfo, setLocationInfo] = useState(null)
 
+  
     useEffect(() => {
       dispatch(getRestaurantsBackEnd())
     }, [])
 
   return (
     <Container>
-     {/* <GooglePlacesAutocomplete
+        {/* <GooglePlacesAutocomplete
 
-        apiKey="AIzaSyDHodYPfHlFQmhCxoQkFXzPSVLR4XBbdRE"
+            apiKey="AIzaSyDHodYPfHlFQmhCxoQkFXzPSVLR4XBbdRE"
 
-        selectProps={{
-          value,
-          onChange: setValue,
-        }}
+            selectProps={{
+              value,
+              onChange: setValue,
+            }}
 
-        apiOptions={{ language: 'en', region: 'us' }}
-      /> */}
-      
+            apiOptions={{ language: 'en', region: 'us' }}
+          /> */}
+
     <div className="map row">
     
     <GoogleMapReact
@@ -52,7 +54,10 @@ const MapViewPage = ({center, zoom}) => {
       defaultZoom= { 11 } 
     >
       
-      { !isEmpty(data)?  data[0].map((restaurant) => <LocationMarker info={locationInfo} key={restaurant.name} lat={restaurant.location.geo.lat} lng={restaurant.location.geo.lng } onClick={() => setLocationInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, })}
+      { !isEmpty(data)?  data.map((restaurant) => <LocationMarker info={locationInfo} key={restaurant.name} lat={restaurant.location.geo.lat} lng={restaurant.location.geo.lng } onClick={() => {
+        setLocationInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, }) 
+        
+      }}
    />) : <h4>map not rendering</h4>
   }  
      
@@ -67,6 +72,6 @@ const MapViewPage = ({center, zoom}) => {
 
 
 
-export default MapViewPage
+export default MapViewTab
 
 //AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk

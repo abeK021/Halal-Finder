@@ -5,9 +5,8 @@ import { GET_RESTAURANTS, FETCH_PLACES_GOOGLE } from "./action-names"
 
 
 
-export const getRestaurantsBackEnd =  async () => {
-  const data = await axios.get(`http://localhost:5000/restaurants`)
-    
+export const getRestaurantsBackEnd =  async (page) => {
+  const data = await axios.get(`http://localhost:5000/restaurants?page=${page}`)
   return {
       type: GET_RESTAURANTS,
       payload: data

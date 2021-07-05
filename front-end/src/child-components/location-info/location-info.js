@@ -4,12 +4,10 @@ import navIcon from '../../images/navigation-icon.png'
 import phoneIcon from '../../images/phone-icon.png'
 
 const LocationInfoBox = ({info}) => {
-
   const googleMaps = `https://maps.google.com/?q=${info.geo.lat}, ${info.geo.lng}, `
-
   return (
     <div>
-    <Table striped bordered hover className="container">
+    <Table hover className="container">
       <tr className="row">
         <th className="col ">
           

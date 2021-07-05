@@ -1,0 +1,17 @@
+.location-icon{
+  font-size: 2rem;
+  color: red
+}
+
+.location-icon :active{
+  font-size: 4rem
+}
+
+.popup {
+  background-color: white;
+  color: black
+}
+
+.clicked-marker{
+  font-size: 5rem
+}
