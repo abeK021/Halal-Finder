@@ -23,7 +23,7 @@ const NavBar = () => {
   const handleClose = () => setShow(false)
 
   return (
-    <React.Fragment>
+    <div className="nav-holder">
       <Navbar variant="dark" bg="light" expand="sm">
         <Navbar.Toggle className="custom-toggler" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="custom-toggler" id="basic-navbar-nav">
@@ -48,7 +48,7 @@ const NavBar = () => {
       <div onClick={handleClose} className="Offcanvas-close">X</div>
       <AddRestaurantForm handleClose={handleClose}/>
      </OffCanvas>
-    </React.Fragment>
+    </div>
   )
 }
 

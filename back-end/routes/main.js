@@ -1,20 +1,34 @@
 const router = require('express').Router();
+const { Geocoder } = require('node-geocoder');
+const NodeGeocoder = require('node-geocoder');
+
 const Restaurants = require('../models/restuarants');
 
-router.get('/add-restaurants', (req, res) => {
+const geocodeOptions = {
+  provider: 'google',
+  apiKey: 'AIzaSyDDZ5Inw8robmEARXPZ5zegTlCl2lCBJVg',
+};
+
+const geocoder = NodeGeocoder(geocodeOptions);
+
+router.post('/add-restaurant', async (req, res) => {
+  const coordinates = await geocoder.geocode(
+    `${req.body.data.streetAddress} ${req.body.data.cityName} ${req.body.data.state} ${req.body.data.zipcode}`
+  );
+
   const addRestaurant = new Restaurants({
-    name: 'Nazara Indain Bistro',
+    name: req.body.data.restaurantName,
     location: {
-      street: '1945 High House Rd',
-      cityState: 'Cary, NC',
-      zip: 27519,
-      geo: { lat: 35.792193019382786, lng: -78.84882074106366 },
+      street: req.body.data.streetAddress,
+      cityState: `${req.body.data.cityName} ${req.body.data.state}`,
+      zip: Number(req.body.data.zipCode),
+      geo: { lat: coordinates[0].latitude, lng: coordinates[0].longitude },
     },
-    number: 19196945353,
-    website: 'http://www.nazaranc.com/',
-    type: 'Indian',
-    description:
-      'Elegant dining space offering traditional Indian cuisine, with vegan options & a daily lunch buffet.',
+    number: Number(req.body.data.number),
+    website: req.body.data.website,
+    type: req.body.data.type,
+    description: req.body.data.description,
+    imgUrl: req.body.data.imgUrl,
   });
 
   addRestaurant.save((err, data) => console.log(err) || res.json(data).end());
@@ -30,24 +44,58 @@ router.get('/restaurants', async (req, res) => {
   const options = {
     pageNum: req.query.page || 1,
     pageLimit: 5,
+    cityState: req.query.cityState || 'Cary NC',
+    type: req.query.type || 'map',
   };
 
-  const [docs, totalDocs] = await Promise.all([
-    Restaurants.find({})
-      .skip(options.pageLimit * options.pageNum - options.pageLimit)
-      .limit(options.pageLimit),
+  const coordinates = await geocoder.geocode(`${options.cityState}`);
 
-    Restaurants.find({}).countDocuments(),
-  ]);
+  const query = {
+    cityState: { $regex: options.cityState, $options: 'i' },
+  };
 
-  const totalPages = Math.ceil(totalDocs / options.pageLimit);
+  if (options.type === 'list') {
+    const [docs, totalDocs, cityCoordinates] = await Promise.all([
+      Restaurants.find({ 'location.cityState': query.cityState })
+        .skip(options.pageLimit * options.pageNum - options.pageLimit)
+        .limit(options.pageLimit),
 
-  res.json({
-    docs,
-    totalDocs,
-    totalPages,
-    pageNumber: options.pageNum,
-  });
+      Restaurants.find({
+        'location.cityState': query.cityState,
+      }).countDocuments(),
+      { lat: coordinates[0].latitude, lng: coordinates[0].longitude },
+    ]);
+
+    const totalPages = Math.ceil(totalDocs / options.pageLimit);
+
+    res.json({
+      docs,
+      totalDocs,
+      totalPages,
+      pageNumber: options.pageNum,
+      cityCoordinates,
+      cityState: options.cityState,
+    });
+  } else {
+    const [docs, totalDocs, cityCoordinates] = await Promise.all([
+      Restaurants.find({ 'location.cityState': query.cityState }),
+      Restaurants.find({
+        'location.cityState': query.cityState,
+      }).countDocuments(),
+      { lat: coordinates[0].latitude, lng: coordinates[0].longitude },
+    ]);
+
+    const totalPages = Math.ceil(totalDocs / options.pageLimit);
+
+    res.json({
+      docs,
+      totalDocs,
+      totalPages,
+      pageNumber: options.pageNum,
+      cityCoordinates,
+      cityState: options.cityState,
+    });
+  }
 });
 
 module.exports = router;

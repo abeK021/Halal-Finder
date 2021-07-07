@@ -1,10 +1,11 @@
 .location-icon{
-  font-size: 2rem;
-  color: red
+  font-size: 30px;
+  color: #9E1A1A 
 }
 
-.location-icon :active{
-  font-size: 4rem
+.location-icon :focus{
+  font-size: 50px;
+  color: #9E1A1A 
 }
 
 .popup {

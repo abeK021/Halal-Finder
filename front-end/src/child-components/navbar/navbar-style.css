@@ -1,5 +1,6 @@
 .bg-light {
-  background-color: #9E1A1A !important
+  background-color: #9E1A1A !important;
+  margin-bottom: 20px;
 }
 
 .navbar-dark .navbar-toggler {
@@ -19,5 +20,19 @@
   font-size: x-large;
   text-align: right;
   margin-right: 40px;
+}
+
+.nav-holder{
+    min-height: 100%;
+    min-width: 100%;
+    position:relative;
+}
+
+.nav{
+  width:100%;
+  position: fixed;
+  left: 0;
+  bottom: 0; 
+  
 }
 

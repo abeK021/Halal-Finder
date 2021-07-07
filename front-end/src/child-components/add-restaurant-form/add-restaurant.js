@@ -1,6 +1,7 @@
 
 import React, {useState} from 'react'
 import {useForm} from 'react-hook-form'
+import { sendRestaurant } from '../../actions/actions-index'
 
 import {stateNames} from './state-names'
 
@@ -10,11 +11,13 @@ import './add-restaurant.css'
 function AddRestaurantForm({handleClose}) {
 
   const { register, handleSubmit, reset } = useForm();
-
+  
+  
   const onSubmit = (data, e) => {
       e.target.reset()
       handleClose()
       
+      sendRestaurant(data)
     }
   
   const stateDropdown = {
@@ -43,6 +46,11 @@ function AddRestaurantForm({handleClose}) {
       <div className="form-group ">
         <label >Street Address</label>
         <input type="text" className="form-control" {...register("streetAddress")}  placeholder="enter street address" />
+      </div>
+
+      <div className="form-group ">
+        <label >City Name</label>
+        <input type="text" className="form-control" {...register("cityName")}  placeholder="enter city name" />
       </div>
 
           <div className="row form-group">
@@ -74,6 +82,11 @@ function AddRestaurantForm({handleClose}) {
         <div className="form-group ">
           <label >Website URL</label>
           <input type="url" className="form-control" {...register("website")}  placeholder="example: https://www.halal-finder.com" />
+        </div>
+
+        <div className="form-group ">
+          <label >Image-Url</label>
+          <input type="url" className="form-control" {...register("imgUrl")}  placeholder="example: https://www.halal-finder.com" />
         </div>
 
         <div className="form-group ">

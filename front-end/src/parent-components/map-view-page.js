@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {useDispatch, useSelector,} from 'react-redux'
 import isEmpty from 'lodash.isempty'
 
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import GoogleMapReact  from 'google-map-react'
-import { InputGroup, FormControl, Container, Row, Col } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import "./map-view-style.css"
 
-import Search from '../child-components/search-places/search.js'
-import { getRestaurantsBackEnd } from '../actions/actions-index'
 import LocationMarker from '../child-components/location-marker/location-marker'
 import LocationInfoBox from '../child-components/location-info/location-info'
 
@@ -16,19 +14,23 @@ import LocationInfoBox from '../child-components/location-info/location-info'
 
 const MapViewTab = ({center, zoom}) => {
 
-  const [value, setValue] = useState(null);
+
 
   const [isActive, setIsActive] = useState(false)
   
   const data = useSelector(state => state.restaurants.restaurants)
+  
+
   const dispatch = useDispatch()
-  const [mapLocation, setLocation] = useState({lat: 35.7915, lng: -78.7811})
+  const cityLocation = useSelector(state => state.restaurants.cityCoordinates)
   const [locationInfo, setLocationInfo] = useState(null)
 
   
-    useEffect(() => {
-      dispatch(getRestaurantsBackEnd())
-    }, [])
+  const handleClick = () => {
+    setIsActive(!isActive)
+  }
+
+
 
   return (
     <Container>
@@ -50,13 +52,12 @@ const MapViewTab = ({center, zoom}) => {
       bootstrapURLKeys={{
        key: 'AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk',
       }}
-      center= {mapLocation}
+      center= {cityLocation}
       defaultZoom= { 11 } 
     >
       
       { !isEmpty(data)?  data.map((restaurant) => <LocationMarker info={locationInfo} key={restaurant.name} lat={restaurant.location.geo.lat} lng={restaurant.location.geo.lng } onClick={() => {
         setLocationInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, }) 
-        
       }}
    />) : <h4>map not rendering</h4>
   }  
