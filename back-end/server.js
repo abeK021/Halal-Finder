@@ -3,7 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/resteraunts', {
+const keys = require('./config/keys');
+
+mongoose.connect(keys.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

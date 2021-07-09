@@ -31,7 +31,7 @@ const MapViewTab = ({center, zoom}) => {
   }
 
 
-
+    console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   return (
     <Container>
         {/* <GooglePlacesAutocomplete
@@ -50,7 +50,7 @@ const MapViewTab = ({center, zoom}) => {
     
     <GoogleMapReact
       bootstrapURLKeys={{
-       key: 'AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk',
+       key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
       }}
       center= {cityLocation}
       defaultZoom= { 11 } 
