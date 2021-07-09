@@ -2,11 +2,13 @@ const router = require('express').Router();
 const { Geocoder } = require('node-geocoder');
 const NodeGeocoder = require('node-geocoder');
 
+const { googleGeoCodeKey } = require('../config/config');
+
 const Restaurants = require('../models/restuarants');
 
 const geocodeOptions = {
   provider: 'google',
-  apiKey: 'AIzaSyDDZ5Inw8robmEARXPZ5zegTlCl2lCBJVg',
+  apiKey: 'API_KEY_HERE',
 };
 
 const geocoder = NodeGeocoder(geocodeOptions);
@@ -95,6 +97,7 @@ router.get('/restaurants', async (req, res) => {
       pageNumber: options.pageNum,
       cityCoordinates,
       cityState: options.cityState,
+      key: process.env,
     });
   }
 });

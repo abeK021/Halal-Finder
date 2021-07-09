@@ -3,7 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const dotenv = require('dotenv');
 const keys = require('./config/keys');
+
+dotenv.config();
 
 mongoose.connect(keys.MONGODB_URI, {
   useNewUrlParser: true,
