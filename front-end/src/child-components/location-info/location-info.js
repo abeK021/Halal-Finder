@@ -8,7 +8,7 @@ import './location-info.css'
 const LocationInfoBox = ({info}) => {
 
   const googleMaps = `https://maps.google.com/?q=${info.geo.lat}, ${info.geo.lng}, `
-
+  console.log(info)
   return (
     <div className="table">
     <Table className="table-container">
@@ -43,7 +43,9 @@ const LocationInfoBox = ({info}) => {
         </th>
         <th className="col table-bottom-right">
         <div className="button-container text-center ">
-           <Button  variant="danger">Order</Button>
+          <a href={info.orderUrl} target="_blank" rel="noreferrer">
+            <Button  variant="danger">Order Now</Button>
+           </a>
           </div>
         </th>
        </tr>

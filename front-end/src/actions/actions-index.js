@@ -14,8 +14,7 @@ export const getRestaurantsBackEnd =  async (tabClick,page,cityState) => {
 }
 
 export const sendRestaurant =  (data) => {
-  debugger
-   return axios.post(`http://localhost:5000/add-restaurant`, {data})
+     return axios.post(`http://localhost:5000/add-restaurant`, {data})
 }
 
 export const cityAction = (cityState) => {

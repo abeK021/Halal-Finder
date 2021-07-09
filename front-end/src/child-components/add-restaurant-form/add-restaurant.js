@@ -81,12 +81,17 @@ function AddRestaurantForm({handleClose}) {
 
         <div className="form-group ">
           <label >Website URL</label>
-          <input type="url" className="form-control" {...register("website")}  placeholder="example: https://www.halal-finder.com" />
+          <input type="url" className="form-control" {...register("website")}  placeholder="http://" />
+        </div>
+
+        <div className="form-group ">
+          <label >Order Url</label>
+          <input type="url" className="form-control" {...register("orderUrl")}  placeholder="http://" />
         </div>
 
         <div className="form-group ">
           <label >Image-Url</label>
-          <input type="url" className="form-control" {...register("imgUrl")}  placeholder="example: https://www.halal-finder.com" />
+          <input type="url" className="form-control" {...register("imgUrl")}  placeholder="http://" />
         </div>
 
         <div className="form-group ">

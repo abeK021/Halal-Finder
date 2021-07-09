@@ -11,7 +11,8 @@ const INITIAL_STATE = {
 
 export const ResterauntsReducer = (state = INITIAL_STATE, action) => {
 
-switch (action.type) {
+  switch (action.type) {
+  
   case GET_RESTAURANTS:
     return {
       ...state, 

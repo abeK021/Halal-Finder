@@ -29,6 +29,7 @@ router.post('/add-restaurant', async (req, res) => {
     type: req.body.data.type,
     description: req.body.data.description,
     imgUrl: req.body.data.imgUrl,
+    orderUrl: req.body.data.orderUrl,
   });
 
   addRestaurant.save((err, data) => console.log(err) || res.json(data).end());

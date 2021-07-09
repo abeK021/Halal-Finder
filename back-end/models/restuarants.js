@@ -18,6 +18,7 @@ const RestaurantsSchema = new Schema({
   type: String,
   description: String,
   imgUrl: String,
+  orderUrl: String,
 });
 
 const Restaurants = mongoose.model('Restaurant', RestaurantsSchema);

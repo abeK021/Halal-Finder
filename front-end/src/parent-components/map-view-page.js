@@ -4,7 +4,7 @@ import isEmpty from 'lodash.isempty'
 
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import GoogleMapReact  from 'google-map-react'
-import { Container } from "react-bootstrap"
+import { Container, Spinner } from "react-bootstrap"
 import "./map-view-style.css"
 
 import LocationMarker from '../child-components/location-marker/location-marker'
@@ -57,9 +57,10 @@ const MapViewTab = ({center, zoom}) => {
     >
       
       { !isEmpty(data)?  data.map((restaurant) => <LocationMarker info={locationInfo} key={restaurant.name} lat={restaurant.location.geo.lat} lng={restaurant.location.geo.lng } onClick={() => {
-        setLocationInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, }) 
+        setLocationInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, orderUrl: restaurant.orderUrl}) 
       }}
-   />) : <h4>map not rendering</h4>
+   />) : <Spinner animation="border" variant="danger" />
+
   }  
      
     </GoogleMapReact>

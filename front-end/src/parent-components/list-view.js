@@ -43,7 +43,7 @@ const ListViewTab =() => {
             data.map((restaurant) => 
               
             <div className="clicked-list-item">
-              <div tabIndex={-1} className="container-fluid row "  onClick={() => setListInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website,})}>
+              <div tabIndex={-1} className="container-fluid row "  onClick={() => setListInfo({name: restaurant.name, geo: restaurant.location.geo, address: `${restaurant.location.street} ${restaurant.location.cityState}, ${restaurant.location.zip}`, phone: String(restaurant.number), description: restaurant.description, website: restaurant.website, orderUrl: restaurant.orderUrl})}>
                   <div className="img-container col"><img key={restaurant.name} src={restaurant.imgUrl} alt=""></img></div>
                   <p key={restaurant.name} className="restaurant-list col mt-4">{restaurant.name}</p>
               </div>
