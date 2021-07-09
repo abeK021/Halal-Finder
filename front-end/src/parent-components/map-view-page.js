@@ -34,18 +34,7 @@ const MapViewTab = ({center, zoom}) => {
     console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
   return (
     <Container>
-        {/* <GooglePlacesAutocomplete
-
-            apiKey="AIzaSyDHodYPfHlFQmhCxoQkFXzPSVLR4XBbdRE"
-
-            selectProps={{
-              value,
-              onChange: setValue,
-            }}
-
-            apiOptions={{ language: 'en', region: 'us' }}
-          /> */}
-
+        
     <div className="map row">
     
     <GoogleMapReact
