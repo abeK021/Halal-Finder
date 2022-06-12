@@ -25,7 +25,7 @@ export const getRestaurantsBackEnd = async (cityState, userLocation) => {
   }
 
   const { data } = await axios.get(
-    `https://halal-finder021.herokuapp.com/restaurants?city=${city}&state=${state}`
+    `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
   );
   debugger;
   return {
@@ -37,7 +37,7 @@ export const getRestaurantsBackEnd = async (cityState, userLocation) => {
 //GET RESTARUARNT INFO
 export const getRestaurantInfo = async (info) => {
   const { data } = await axios.get(
-    `https://halal-finder021.herokuapp.com//restaurant?placeId=${info.placeId}`
+    `https://halal-finder021.herokuapp.com/restaurant?placeId=${info.placeId}`
   );
   debugger;
   return {

@@ -17,7 +17,7 @@ const geocodeOptions = {
 const geocoder = NodeGeocoder(geocodeOptions);
 
 // GET RESTAURANTS
-router.get("/restaurants", async (req, res) => {
+router.get("/", async (req, res) => {
   const client = new Client({});
 
   const coordinates = await geocoder.geocode(
