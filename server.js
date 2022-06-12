@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-const routes = require("/main");
+const routes = require("./main");
 app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
