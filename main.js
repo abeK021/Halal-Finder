@@ -5,9 +5,9 @@ const { Geocoder } = require("node-geocoder");
 const NodeGeocoder = require("node-geocoder");
 const { Client } = require("@googlemaps/google-maps-services-js");
 
-const Restaurants = require("../models/restuarants");
+const Restaurants = require("./models/restuarants");
 
-const keys = require("../config/keys");
+const keys = require("./config/keys");
 
 const geocodeOptions = {
   provider: "google",
@@ -63,7 +63,7 @@ router.get("/restaurant", async (req, res) => {
     .placeDetails({
       params: {
         place_id: req.query.placeId,
-        key: "AIzaSyDHodYPfHlFQmhCxoQkFXzPSVLR4XBbdRE",
+        key: keys.GOOGLE_PLACES_API_KEY,
       },
     })
     .then(({ data: { result } }) => {
