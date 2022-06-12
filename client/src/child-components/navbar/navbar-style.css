@@ -1,0 +1,38 @@
+.bg-light {
+  background-color: #9E1A1A !important;
+  margin-bottom: 20px;
+}
+
+.navbar-dark .navbar-toggler {
+  color: white;
+  border: none;
+}
+
+.navbar-dark .navbar-brand{
+  color:white
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color: rgba(255, 255, 255, 1)
+}
+
+.Offcanvas-close{
+  font-size: x-large;
+  text-align: right;
+  margin-right: 40px;
+}
+
+.nav-holder{
+    min-height: 100%;
+    min-width: 100%;
+    position:relative;
+}
+
+.nav{
+  width:100%;
+  position: fixed;
+  left: 0;
+  bottom: 0; 
+  
+}
+

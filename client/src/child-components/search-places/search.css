@@ -1,0 +1,14 @@
+.search-container {
+  border: 1px solid red;
+  padding: 1rem;
+}
+
+.btn {
+  width: 100%;
+}
+@media screen and (min-width: 800px) {
+  .MuiGrid-container {
+    margin: 0 auto;
+    max-width: 50vw;
+  }
+}

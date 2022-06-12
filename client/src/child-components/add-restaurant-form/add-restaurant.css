@@ -1,0 +1,29 @@
+.select {
+	width:90%;
+	position:absolute;
+	left:0;
+	top:0;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+.select-holder {
+  margin-top: 10px;
+	display:inline-block;
+	position:relative;
+	height:1.5em;
+	background:grey;
+}
+
+input{
+  margin-bottom: 5px;
+}
+
+textarea{
+  margin-bottom: 20px;
+}
+
+.btn-primary{
+	background-color: #9E1A1A;
+	border-color:#9E1A1A 
+}
+

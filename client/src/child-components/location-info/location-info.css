@@ -1,0 +1,28 @@
+.table-top-left {
+  border-right: 1px solid red;
+  border-bottom: 1px solid red;
+}
+
+.table-top-right {
+  border-left: 1px solid red;
+  border-bottom: 1px solid red;
+}
+
+.table {
+  padding: 10px;
+}
+
+.table-bottom-left {
+  border-right: 1px solid red;
+  border-bottom: none;
+}
+
+.table-bottom-right {
+  border-left: 1px solid red;
+  border-bottom: none;
+}
+
+.location-info-container {
+  width: 80%;
+  margin: 2rem auto;
+}

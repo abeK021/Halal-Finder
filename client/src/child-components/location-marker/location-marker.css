@@ -1,0 +1,14 @@
+.location-icon {
+  font-size: 2rem;
+  color: #9e1a1a;
+}
+
+.popup {
+  background-color: white;
+  color: black;
+}
+
+.location-icon-clicked {
+  color: #9e1a1a;
+  font-size: 3rem;
+}
