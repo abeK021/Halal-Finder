@@ -1,31 +1,33 @@
 //import npm modules
-import {Navbar, Nav,  } from 'react-bootstrap'
-import {useState} from 'react'
-import React from 'react'
-import OffCanvas from 'react-aria-offcanvas'
-import './navbar-style.css'
+import { Navbar, Nav } from "react-bootstrap";
+import { useState } from "react";
+import React from "react";
+// import OffCanvas from 'react-aria-offcanvas'
+import "./navbar-style.css";
 
 //import files
-import AddRestaurantForm from '../add-restaurant-form/add-restaurant'
+import AddRestaurantForm from "../add-restaurant-form/add-restaurant";
 
 const offCanvasStyle = {
   content: {
-    background:  'rgba(128, 128, 128, .9)',
-    color: 'white'
-  }
-}
+    background: "rgba(128, 128, 128, .9)",
+    color: "white",
+  },
+};
 
 const NavBar = () => {
+  const [show, setShow] = useState(false);
 
-  const [show, setShow] = useState(false)
-
-  const handleShow = () => setShow(true)
-  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   return (
     <div className="nav-holder">
       <Navbar variant="dark" bg="light" expand="sm">
-        <Navbar.Toggle className="custom-toggler" aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          className="custom-toggler"
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse className="custom-toggler" id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link onClick={handleShow}>Add A Resteraunt</Nav.Link>
@@ -35,7 +37,7 @@ const NavBar = () => {
         <Navbar.Brand href="#home">Halal-Finder</Navbar.Brand>
       </Navbar>
 
-      <OffCanvas
+      {/* <OffCanvas
       isOpen={show}
       onClose={handleClose}
       position='top'
@@ -47,9 +49,9 @@ const NavBar = () => {
      >
       <div onClick={handleClose} className="Offcanvas-close">X</div>
       <AddRestaurantForm handleClose={handleClose}/>
-     </OffCanvas>
+     </OffCanvas> */}
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
