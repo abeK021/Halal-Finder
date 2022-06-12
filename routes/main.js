@@ -51,7 +51,7 @@ router.get("/restaurants", async (req, res) => {
       });
     })
     .catch((e) => {
-      console.log(e);
+      res.json(e);
     });
 });
 

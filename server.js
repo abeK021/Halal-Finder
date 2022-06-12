@@ -26,6 +26,7 @@ const routes = require("./routes/main");
 app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
+  app.use(routes);
   // Express will serve up production assets
   // like our main.js file, or main.css file!
   app.use(express.static("client/build"));

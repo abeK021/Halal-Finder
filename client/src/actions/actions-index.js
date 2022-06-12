@@ -27,7 +27,7 @@ export const getRestaurantsBackEnd = async (cityState, userLocation) => {
   const { data } = await axios.get(
     `http://localhost:5000/restaurants?city=${city}&state=${state}`
   );
-
+  debugger;
   return {
     type: GET_RESTAURANTS,
     payload: data,
@@ -39,7 +39,7 @@ export const getRestaurantInfo = async (info) => {
   const { data } = await axios.get(
     `http://localhost:5000/restaurant?placeId=${info.placeId}`
   );
-
+  debugger;
   return {
     type: GET_RESTAURANT_INFO,
     payload: data,
