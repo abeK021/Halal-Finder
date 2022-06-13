@@ -10,7 +10,7 @@ import InfoTooltip from "../info-tooltip/info-tooltip";
 import { states } from "../../Utils/data";
 
 import {
-  getRestaurantsBackEnd,
+  getSearchedCityRestaurant,
   cityAction,
   activeRestaurantAction,
 } from "../../actions/actions-index";
@@ -40,7 +40,7 @@ const Search = () => {
   const onFormClick = () => {
     setCity("");
     setState("");
-    dispatch(getRestaurantsBackEnd(`${city} ${state}`));
+    dispatch(getSearchedCityRestaurant(`${city} ${state}`));
   };
   console.log(process.env.REACT_APP_GOOGLE_PACES_API_KEY);
   return (

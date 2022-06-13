@@ -12,22 +12,30 @@ import {
 } from "./action-names";
 import CityHeading from "../child-components/city-location-heading/city-location-heading";
 
-// GET ALL RESTDARAUTNTS FOR A CITY
-export const getRestaurantsBackEnd = async (cityState, userLocation) => {
-  let city, state;
-  if (cityState == undefined) {
-    city = userLocation.city;
-    state = userLocation.state;
-  } else {
-    const location = cityState.split(" ");
-    city = location[0];
-    state = location[1];
-  }
-
+// GET INITIAL RESTDARAUTNTS FOR IP ADDRESS LOCATION
+export const getRestaurantsBackEnd = async () => {
+  debugger;
   const { data } = await axios.get(
-    `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
+    // `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
+    "http://localhost:5000/"
   );
+  debugger;
+  return {
+    type: GET_RESTAURANTS,
+    payload: data,
+  };
+};
 
+// GET SEARCHED CITY RESTAURANTS FORM SERVER
+export const getSearchedCityRestaurant = async (cityState) => {
+  debugger;
+  let [city, state] = cityState.split(" ");
+  debugger;
+  const { data } = await axios.get(
+    // `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
+    `http://localhost:5000/restaurants?city=${city}&state=${state}`
+  );
+  debugger;
   return {
     type: GET_RESTAURANTS,
     payload: data,

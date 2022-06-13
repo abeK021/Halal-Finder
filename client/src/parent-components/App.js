@@ -29,18 +29,13 @@ const App = () => {
 
   // geoloaction
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(
-        `https://extreme-ip-lookup.com/json/?key=${process.env.REACT_APP_EXTREME_IP_LOOKUP_KEY}`
-      );
+    // (async () => {
+    //   const { data } = await axios.get(
+    //     `https://extreme-ip-lookup.com/json/?key=${process.env.REACT_APP_EXTREME_IP_LOOKUP_KEY}`
+    //   );
 
-      dispatch(
-        getRestaurantsBackEnd(undefined, {
-          city: data.city,
-          state: data.region,
-        })
-      );
-    })();
+    //   ();
+    dispatch(getRestaurantsBackEnd());
   }, []);
 
   return (

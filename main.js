@@ -4,6 +4,7 @@ const router = require("express").Router();
 const { Geocoder } = require("node-geocoder");
 const NodeGeocoder = require("node-geocoder");
 const { Client } = require("@googlemaps/google-maps-services-js");
+const axios = require("axios");
 
 const Restaurants = require("./models/restuarants");
 
@@ -16,16 +17,53 @@ const geocodeOptions = {
 
 const geocoder = NodeGeocoder(geocodeOptions);
 
-// GET RESTAURANTS
+// GET INITIAL RESTAURANTS
 router.get("/", async (req, res) => {
   const client = new Client({});
 
-  const coordinates = await geocoder.geocode(
-    `${req.query.city} ${req.query.state}`
+  const { data } = await axios.get(
+    `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
   );
 
-  let lat = coordinates[0].latitude;
-  let lng = coordinates[0].longitude;
+  let lat = Number(data.lat);
+  let lng = Number(data.lon);
+
+  client
+    .placesNearby({
+      params: {
+        location: {
+          lat,
+          lng,
+        },
+        key: keys.GOOGLE_PLACES_API_KEY,
+        radius: 8000,
+
+        keyword: "halal",
+      },
+    })
+    .then((r, e) => {
+      res.json({
+        restaurants: r.data.results,
+        cityCoords: {
+          lat,
+          lng,
+        },
+        cityState: `${data.city}, ${data.region}`,
+      });
+    })
+    .catch((e) => {
+      res.json(e);
+    });
+});
+
+// GET RESTAURANTS SEARCH
+router.get("/restaurants", async (req, res) => {
+  const client = new Client({});
+
+  const coords = await geocoder.geocode(`${req.query.city} ${req.query.state}`);
+
+  let lat = coords[0].latitude;
+  let lng = coords[0].longitude;
 
   client
     .placesNearby({
@@ -60,17 +98,30 @@ router.get("/restaurant", async (req, res) => {
   const client = new Client({});
 
   client
-    .placeDetails({
+    .placesNearby({
       params: {
-        place_id: req.query.placeId,
+        location: {
+          lat,
+          lng,
+        },
         key: keys.GOOGLE_PLACES_API_KEY,
+        radius: 8000,
+
+        keyword: "halal",
       },
     })
-    .then(({ data: { result } }) => {
-      res.json(result).end();
+    .then((r, e) => {
+      res.json({
+        restaurants: r.data.results,
+        cityCoords: {
+          lat,
+          lng,
+        },
+        cityState: `${data.city}, ${data.region}`,
+      });
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((e) => {
+      res.json(e);
     });
 });
 
