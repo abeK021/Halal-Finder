@@ -38,7 +38,6 @@ const Search = () => {
   const handleStateChange = (e) => setState(e.target.value);
 
   const onFormClick = () => {
-    debugger;
     setCity("");
     setState("");
     dispatch(getRestaurantsBackEnd(`${city} ${state}`));
