@@ -7,7 +7,6 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const __dirname = path.resolve();
 
 // mongoose.connect(keys.MONGODB_URI, {
 //   useNewUrlParser: true,
@@ -35,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   // if it doesn't recognize the route
   const path = require("path");
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
