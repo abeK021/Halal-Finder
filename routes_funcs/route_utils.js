@@ -18,16 +18,20 @@ const geocoder = NodeGeocoder(geocodeOptions);
 exports.getInitialRestaurants = async (req, res) => {
   const client = new Client({});
 
-  const { data } = await axios.get(
-    `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
-  );
-  console.log("location", data);
+  axios
+    .get(
+      `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
+    )
+    .then((r) => console.log(r))
+    .catch((e) => console.log(e));
+
   let lat = Number(data.lat);
   let lng = Number(data.lon);
 
-  const {
-    data: { results },
-  } = await client
+  // const {
+  //   data: { results },
+  // } = await
+  client
     .placesNearby({
       params: {
         location: {
@@ -42,16 +46,16 @@ exports.getInitialRestaurants = async (req, res) => {
     })
     .then((r) => console.log("succes", r))
     .catch((e) => console.log("api call err", e));
-  console.log(process.env.GOOGLE_PLACES_API_KEY);
-  res.json({
-    test: "tesing initial load",
-    restaurants: results,
-    cityCoords: {
-      lat,
-      lng,
-    },
-    cityState: `${data.city}, ${data.region}`,
-  });
+
+  // res.json({
+  //   test: "tesing initial load",
+  //   restaurants: results,
+  //   cityCoords: {
+  //     lat,
+  //     lng,
+  //   },
+  //   cityState: `${data.city}, ${data.region}`,
+  // });
 };
 
 //SEARCHED CITY--------------------------------------------------------------
