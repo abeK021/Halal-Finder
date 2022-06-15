@@ -21,25 +21,28 @@ exports.getInitialRestaurants = async (req, res) => {
   const { data } = await axios.get(
     `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
   );
-
+  console.log("location", data);
   let lat = Number(data.lat);
   let lng = Number(data.lon);
 
   const {
     data: { results },
-  } = await client.placesNearby({
-    params: {
-      location: {
-        lat,
-        lng,
+  } = await client
+    .placesNearby({
+      params: {
+        location: {
+          lat,
+          lng,
+        },
+        key: keys.GOOGLE_PLACES_API_KEY,
+        radius: 8000,
+
+        keyword: "halal",
       },
-      key: keys.GOOGLE_PLACES_API_KEY,
-      radius: 8000,
-
-      keyword: "halal",
-    },
-  });
-
+    })
+    .then((r) => console.log("succes", r))
+    .catch((e) => console.log("api call err", e));
+  console.log(process.env.GOOGLE_PLACES_API_KEY);
   res.json({
     test: "tesing initial load",
     restaurants: results,
