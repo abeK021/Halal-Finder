@@ -44,13 +44,15 @@ export const getSearchedCityRestaurant = async (cityState) => {
 
 //GET RESTARUARNT INFO
 export const getRestaurantInfo = async (info) => {
+  debugger;
   const { data } = await axios.get(
-    `https://halal-finder021.herokuapp.com/restaurant?placeId=${info.placeId}`
+    // `https://halal-finder021.herokuapp.com/restaurant?placeId=${info.placeId}`
+    `http://localhost:5000/restaurant?placeId=${info.placeId}`
   );
-
+  debugger;
   return {
     type: GET_RESTAURANT_INFO,
-    payload: data,
+    payload: data.restaurant,
   };
 };
 
