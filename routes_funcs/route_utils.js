@@ -19,61 +19,48 @@ const geocoder = NodeGeocoder(geocodeOptions);
 exports.getInitialRestaurants = async (req, res) => {
   const client = new Client({});
 
-  axios
-    .get(
-      `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
-    )
-    .then((r) => {
-      res.json({
-        successTest: "testing extrem ip look up sucess",
-        results: r.data,
-      });
-    })
-    .catch((e) => {
-      res.json({
-        errorTest: "error in extrem ip lookup call",
-        error: e,
-      });
-    });
+  const locationData = await axios.get(
+    `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+  );
 
-  // let lat = Number(locationData.lat) || "no lat in extreme lookup api call";
-  // let lng = Number(locationData.lon) || "no lon in extreme lookup api call";
+  let lat = Number(locationData.lat) || "no lat in extreme lookup api call";
+  let lng = Number(locationData.lon) || "no lon in extreme lookup api call";
 
   // const {
   //   data: { results },
   // } = await
-  // client
-  //   .placesNearby({
-  //     params: {
-  //       location: {
-  //         lat: 35.791538,
-  //         lng: -78.78112,
-  //       },
-  //       key: keys.GOOGLE_PLACES_API_KEY,
-  //       radius: 8000,
+  client
+    .placesNearby({
+      params: {
+        location: {
+          lat: 35.791538,
+          lng: -78.78112,
+        },
+        key: keys.GOOGLE_PLACES_API_KEY,
+        radius: 8000,
 
-  //       keyword: "halal",
-  //     },
-  //   })
-  //   .then((r) => {
-  //     console.log("succes", r.data.results);
-  //     res.json({
-  //       test: "tesing initial load",
-  //       restaurants: r.data.results,
-  //       cityCoords: {
-  //         lat,
-  //         lng,
-  //       },
-  //       cityState: `${locationData.data.city}, ${locationData.data.region}`,
-  //     });
-  //   })
-  //   .catch((e) => {
-  //     console.log("api call err", e);
-  //     res.json({
-  //       test: "error testing",
-  //       error: JSON.stringify(e),
-  //     });
-  //   });
+        keyword: "halal",
+      },
+    })
+    .then((r) => {
+      console.log("succes", r.data.results);
+      res.json({
+        test: "tesing initial load",
+        restaurants: r.data.results,
+        cityCoords: {
+          lat,
+          lng,
+        },
+        cityState: `${locationData.data.city}, ${locationData.data.region}`,
+      });
+    })
+    .catch((e) => {
+      console.log("api call err", e);
+      res.json({
+        test: "error testing",
+        error: JSON.stringify(e),
+      });
+    });
 
   // res.json({
   //   test: "tesing initial load",
