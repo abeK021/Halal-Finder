@@ -6,6 +6,7 @@ const { Client } = require("@googlemaps/google-maps-services-js");
 const axios = require("axios");
 
 const keys = require("../config/keys");
+const { json } = require("express/lib/response");
 
 const geocodeOptions = {
   provider: "google",
@@ -18,15 +19,12 @@ const geocoder = NodeGeocoder(geocodeOptions);
 exports.getInitialRestaurants = async (req, res) => {
   const client = new Client({});
 
-  axios
-    .get(
-      `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
-    )
-    .then((r) => console.log(r))
-    .catch((e) => console.log(e));
+  const locationData = await axios.get(
+    `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
+  );
 
-  let lat = Number(data.lat);
-  let lng = Number(data.lon);
+  let lat = Number(data.lat) || "no lat in extreme lookup api call";
+  let lng = Number(data.lon) || "no lon in extreme lookup api call";
 
   // const {
   //   data: { results },
@@ -44,8 +42,25 @@ exports.getInitialRestaurants = async (req, res) => {
         keyword: "halal",
       },
     })
-    .then((r) => console.log("succes", r))
-    .catch((e) => console.log("api call err", e));
+    .then((r) => {
+      console.log("succes", r);
+      res.json({
+        test: "tesing initial load",
+        restaurants: r.data,
+        cityCoords: {
+          lat,
+          lng,
+        },
+        cityState: `${locationData.data.city}, ${locationData.data.region}`,
+      });
+    })
+    .catch((e) => {
+      console.log("api call err", e);
+      res.json({
+        test: "error testing",
+        error: JSON.stringify(e),
+      });
+    });
 
   // res.json({
   //   test: "tesing initial load",
