@@ -21,7 +21,7 @@ exports.getInitialRestaurants = async (req, res) => {
 
   axios
     .get(
-      `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
+      `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
     )
     .then((r) => {
       res.json({
