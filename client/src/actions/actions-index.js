@@ -16,7 +16,7 @@ import CityHeading from "../child-components/city-location-heading/city-location
 export const getRestaurantsBackEnd = async () => {
   debugger;
   const { data } = await axios.get(
-    "https://halal-finder021.herokuapp.com/"
+    "/"
     // "http://localhost:5000/"
   );
   debugger;
