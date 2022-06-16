@@ -63,16 +63,6 @@ exports.getInitialRestaurants = async (req, res) => {
         error: JSON.stringify(e),
       });
     });
-
-  // res.json({
-  //   test: "tesing initial load",
-  //   restaurants: results,
-  //   cityCoords: {
-  //     lat,
-  //     lng,
-  //   },
-  //   cityState: `${data.city}, ${data.region}`,
-  // });
 };
 
 //SEARCHED CITY--------------------------------------------------------------
