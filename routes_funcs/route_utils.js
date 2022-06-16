@@ -23,8 +23,8 @@ exports.getInitialRestaurants = async (req, res) => {
     `https://extreme-ip-lookup.com/json/?key=${process.env.EXTREME_IP_LOOKUP_KEY}`
   );
 
-  let lat = Number(data.lat) || "no lat in extreme lookup api call";
-  let lng = Number(data.lon) || "no lon in extreme lookup api call";
+  let lat = Number(locationData.lat) || "no lat in extreme lookup api call";
+  let lng = Number(locationData.lon) || "no lon in extreme lookup api call";
 
   // const {
   //   data: { results },
