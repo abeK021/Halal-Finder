@@ -33,8 +33,8 @@ exports.getInitialRestaurants = async (req, res) => {
     .placesNearby({
       params: {
         location: {
-          lat,
-          lng,
+          lat: 35.791538,
+          lng: -78.78112,
         },
         key: keys.GOOGLE_PLACES_API_KEY,
         radius: 8000,
