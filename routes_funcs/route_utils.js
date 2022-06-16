@@ -23,8 +23,10 @@ exports.getInitialRestaurants = async (req, res) => {
     `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
   );
 
-  let lat = Number(locationData.lat) || "no lat in extreme lookup api call";
-  let lng = Number(locationData.lon) || "no lon in extreme lookup api call";
+  let lat =
+    Number(locationData.data.lat) || "no lat in extreme lookup api call";
+  let lng =
+    Number(locationData.data.lon) || "no lon in extreme lookup api call";
 
   // const {
   //   data: { results },
@@ -33,8 +35,8 @@ exports.getInitialRestaurants = async (req, res) => {
     .placesNearby({
       params: {
         location: {
-          lat: 35.791538,
-          lng: -78.78112,
+          lat,
+          lng,
         },
         key: keys.GOOGLE_PLACES_API_KEY,
         radius: 8000,
