@@ -60,5 +60,5 @@
     "@iconify-icons/map": "^1.1.0",
     "@iconify/react": "^3.2.2"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://halal-finder021.herokuapp.com"
 }

@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 // UTILS AND FUNCTIONS
 
 import _ from "lodash";
-import axios from "axios";
-import {
-  getRestaurantInfo,
-  activeRestaurantAction,
-} from "../actions/actions-index";
+
+import { getRestaurantInfo } from "../actions/actions-index";
 
 // GOOGLE
 
@@ -26,10 +23,9 @@ import InfoTooltip from "../child-components/info-tooltip/info-tooltip";
 
 const MapViewTab = ({ center, zoom, locationError }) => {
   const [activeRestaurant, setActiveRestaurant] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+
   const [locationInfo, setLocationInfo] = useState();
   const [clickedMarker, setClickedMarker] = useState();
-  const [markerClassName, setMarkerClassName] = useState("");
 
   const dispatch = useDispatch();
   const cityLocation = useSelector(
@@ -55,7 +51,7 @@ const MapViewTab = ({ center, zoom, locationError }) => {
   };
 
   const markerClass = (placeId) => {
-    if (placeId == clickedMarker) {
+    if (placeId === clickedMarker) {
       return "location-icon-clicked";
     } else {
       return "location-icon";

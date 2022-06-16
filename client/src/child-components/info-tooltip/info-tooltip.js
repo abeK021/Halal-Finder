@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Button, Popover, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Icon } from "@iconify/react";
 import "./info-tooltip.css";
 

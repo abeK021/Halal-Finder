@@ -1,19 +1,15 @@
 import { TextField, Button, Grid, MenuItem } from "@material-ui/core";
-import { dispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useEffect, useState } from "react";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import React, { useState } from "react";
+// import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 
 import InfoTooltip from "../info-tooltip/info-tooltip";
 
 import { states } from "../../Utils/data";
 
-import {
-  getSearchedCityRestaurant,
-  cityAction,
-  activeRestaurantAction,
-} from "../../actions/actions-index";
+import { getSearchedCityRestaurant } from "../../actions/actions-index";
 
 import "./search.css";
 
@@ -44,19 +40,25 @@ const Search = () => {
   };
   console.log(process.env.REACT_APP_GOOGLE_PACES_API_KEY);
   return (
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
       <Grid
         container
         item
         mt={50}
         p={5}
         className="search-container"
-        justify="center"
+        justifyContent="center"
       >
         <Grid xs={1} item>
           <InfoTooltip />
         </Grid>
-        <Grid mb={20} container direction="row" justify="center" spacing={3}>
+        <Grid
+          mb={20}
+          container
+          direction="row"
+          justifyContent="center"
+          spacing={3}
+        >
           <Grid xs={4} item justify="center" spacing={2}>
             <TextField
               onChange={handleCityChange}

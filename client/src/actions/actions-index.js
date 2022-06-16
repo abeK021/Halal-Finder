@@ -1,23 +1,18 @@
 import axios from "axios";
-import { useLoadScript } from "@react-google-maps/api";
-import { useDispatch } from "react-redux";
-
 import {
   GET_RESTAURANTS,
-  FETCH_PLACES_GOOGLE,
   STORE_CITY_STATE,
   PAGE_NUMBER,
   GET_RESTAURANT_INFO,
   SET_SHOW,
 } from "./action-names";
-import CityHeading from "../child-components/city-location-heading/city-location-heading";
 
 // GET INITIAL RESTDARAUTNTS FOR IP ADDRESS LOCATION
 export const getRestaurantsBackEnd = async () => {
   debugger;
   const { data } = await axios.get(
-    "/"
-    // "http://localhost:5000/"
+    // "/"
+    "http://localhost:5000/"
   );
   debugger;
   return {

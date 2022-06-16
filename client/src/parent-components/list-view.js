@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "bootstrap";
 import "./list-view-style.css";
@@ -7,10 +7,7 @@ import Filteration from "../child-components/filter-search/pagination";
 import { Icon } from "@iconify/react";
 import isEmpty from "lodash.isempty";
 
-import {
-  activeRestaurantAction,
-  getRestaurantInfo,
-} from "../actions/actions-index";
+import { getRestaurantInfo } from "../actions/actions-index";
 
 const ListViewTab = () => {
   const dispatch = useDispatch();
@@ -22,15 +19,13 @@ const ListViewTab = () => {
 
   const data = useSelector((state) => state);
 
-  const mainRef = useRef(null);
+  // const initialfocus = (e) => {
+  //   e.target.className = "container-fluid row active-item";
+  // };
 
-  const initialfocus = (e) => {
-    e.target.className = "container-fluid row active-item";
-  };
-
-  const noFocus = (e) => {
-    e.target.className = "container-fluid row";
-  };
+  // const noFocus = (e) => {
+  //   e.target.className = "container-fluid row";
+  // };
 
   useEffect(() => {
     setActiveRestaurant(false);

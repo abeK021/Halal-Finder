@@ -1,6 +1,6 @@
 import MapViewTab from "./map-view-page";
 import NavBar from "../child-components/navbar/nav-bar";
-import AddRestaurantForm from "../child-components/add-restaurant-form/add-restaurant";
+// import AddRestaurantForm from "../child-components/add-restaurant-form/add-restaurant";
 import ListViewTab from "./list-view";
 import "./tab-style.css";
 import Search from "../child-components/search-places/search";
@@ -12,9 +12,7 @@ import { getRestaurantsBackEnd } from "../actions/actions-index";
 import { pageAction } from "../actions/actions-index";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { findLastIndex } from "lodash";
-
-import axios from "axios";
+// import { findLastIndex } from "lodash";
 
 const App = () => {
   const cityLocation = useSelector((state) => state.restaurants.cityState);

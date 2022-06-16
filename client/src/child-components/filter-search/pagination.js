@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "@material-ui/lab/Pagination";
-import { useEffect } from "react";
-import { getRestaurantsBackEnd, pageAction } from "../../actions/actions-index";
+
+import { pageAction } from "../../actions/actions-index";
 import "./pagination.css";
 import Box from "@material-ui/core/Box";
 
