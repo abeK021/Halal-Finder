@@ -45,7 +45,6 @@ exports.getInitialRestaurants = async (req, res) => {
       },
     })
     .then((r) => {
-      console.log("succes", r.data.results);
       res.json({
         test: "tesing initial load",
         restaurants: r.data.results,
