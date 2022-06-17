@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 // app.use(router);
 
-app.get("/", routes.getInitialRestaurants);
+app.get("/home", routes.getInitialRestaurants);
 
 // get serached city restaurants
 app.get("/restaurants", routes.getSearchedCityRestaurants);

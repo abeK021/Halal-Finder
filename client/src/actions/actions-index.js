@@ -12,7 +12,7 @@ export const getRestaurantsBackEnd = async () => {
   debugger;
   const { data } = await axios.get(
     // "/"
-    "http://localhost:5000/"
+    "/home"
   );
   debugger;
   return {
