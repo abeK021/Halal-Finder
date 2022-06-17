@@ -1,15 +1,15 @@
+const router = require("express").Router();
+
 const routes = require("./routes_funcs/route_utils");
 
-module.exports = function (app) {
-  // get Initial restaurants
-  app.get("/", routes.getInitialRestaurants);
+// get Initial restaurants
+router.get("/", routes.getInitialRestaurants);
 
-  // get serached city restaurants
-  app.get("/restaurants", routes.getSearchedCityRestaurants);
+// get serached city restaurants
+router.get("/restaurants", routes.getSearchedCityRestaurants);
 
-  // clicked resturant
-  app.get("/restaurant", routes.getClickedRestaurant);
-};
+// clicked resturant
+router.get("/restaurant", routes.getClickedRestaurant);
 
 // router.post("/add-restaurant", async (req, res) => {
 //   const coordinates = await geocoder.geocode(
@@ -40,3 +40,5 @@ module.exports = function (app) {
 
 //   res.end("success");
 // });
+
+module.exports = router;
