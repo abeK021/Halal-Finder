@@ -8,7 +8,6 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const router = require("./router");
-const path = require("path");
 
 // const routes = require("./router");
 
@@ -35,7 +34,6 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 app.get("/restaurant", routes.getClickedRestaurant);
 
 if (process.env.NODE_ENV === "production") {
-  const path = require("path");
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
