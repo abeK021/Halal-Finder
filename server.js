@@ -12,6 +12,8 @@ const router = require("./router");
 // const routes = require("./router");
 
 const routes = require("./routes_funcs/route_utils");
+const { application } = require("express");
+const res = require("express/lib/response");
 
 // mongoose.connect(keys.MONGODB_URI, {
 //   useNewUrlParser: true,
@@ -32,6 +34,16 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 
 // clicked resturant
 app.get("/restaurant", routes.getClickedRestaurant);
+
+app.get("/test-location", async () => {
+  const locationData = await axios.get(
+    `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+  );
+
+  res.json({
+    locationData,
+  });
+});
 
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
