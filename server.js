@@ -47,12 +47,12 @@ app.get("/test-location", async (req, res) => {
 
   axios
     .get(
-      `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+      `https://extreme-ip-lookup.com/json/${ip}?key=${keys.EXTREME_IP_LOOKUP_KEY}`
     )
     .then((r) => {
       res
         .json({
-          results: r.data,
+          results: r.data || ip,
           key: keys.EXTREME_IP_LOOKUP_KEY,
           ip,
         })
