@@ -57,7 +57,7 @@ app.get("/test-location", async (req, res) => {
         .json({
           err: e,
           key: keys.EXTREME_IP_LOOKUP_KEY,
-          ip: request.socket.remoteAddress,
+          ip: req.socket.remoteAddress,
         })
         .end();
     });
