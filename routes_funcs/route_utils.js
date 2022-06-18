@@ -19,15 +19,18 @@ const geocoder = NodeGeocoder(geocodeOptions);
 exports.getInitialRestaurants = async (req, res) => {
   const client = new Client({});
 
+  var ip =
+    req.headers["x-forwarded-for"] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+
   const locationData = await axios.get(
-    `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+    `https://extreme-ip-lookup.com/json/${ip}?key=${keys.EXTREME_IP_LOOKUP_KEY}`
   );
 
-  let lat =
-    Number(locationData.data.lat) || "no lat in extreme lookup api call";
-  let lng =
-    Number(locationData.data.lon) || "no lon in extreme lookup api call";
-
+  let lat = Number(locationData.data.lat) || -73.935242;
+  let lng = Number(locationData.data.lon) || 40.73061;
   // const {
   //   data: { results },
   // } = await
@@ -117,4 +120,35 @@ exports.getClickedRestaurant = async (req, res) => {
       restaurant: data.result,
     })
     .end();
+};
+
+exports.testGetIp = (req, res) => {
+  var ip =
+    req.headers["x-forwarded-for"] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+
+  axios
+    .get(
+      `https://extreme-ip-lookup.com/json/${ip}?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+    )
+    .then((r) => {
+      res
+        .json({
+          results: r.data || ip,
+          key: keys.EXTREME_IP_LOOKUP_KEY,
+          ip,
+        })
+        .end();
+    })
+    .catch((e) => {
+      res
+        .json({
+          err: e,
+          key: keys.EXTREME_IP_LOOKUP_KEY,
+          ip,
+        })
+        .end();
+    });
 };

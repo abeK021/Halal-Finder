@@ -38,36 +38,7 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 // clicked resturant
 app.get("/restaurant", routes.getClickedRestaurant);
 
-app.get("/test-location", async (req, res) => {
-  var ip =
-    req.headers["x-forwarded-for"] ||
-    req.connection.remoteAddress ||
-    req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
-
-  axios
-    .get(
-      `https://extreme-ip-lookup.com/json/${ip}?key=${keys.EXTREME_IP_LOOKUP_KEY}`
-    )
-    .then((r) => {
-      res
-        .json({
-          results: r.data || ip,
-          key: keys.EXTREME_IP_LOOKUP_KEY,
-          ip,
-        })
-        .end();
-    })
-    .catch((e) => {
-      res
-        .json({
-          err: e,
-          key: keys.EXTREME_IP_LOOKUP_KEY,
-          ip,
-        })
-        .end();
-    });
-});
+app.get("/test-location", routes.testGetIp);
 
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
