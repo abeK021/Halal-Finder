@@ -39,6 +39,12 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 app.get("/restaurant", routes.getClickedRestaurant);
 
 app.get("/test-location", async (req, res) => {
+  var ip =
+    req.headers["x-forwarded-for"] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+
   axios
     .get(
       `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
@@ -48,7 +54,7 @@ app.get("/test-location", async (req, res) => {
         .json({
           results: r.data,
           key: keys.EXTREME_IP_LOOKUP_KEY,
-          ip: request.socket.remoteAddress,
+          ip,
         })
         .end();
     })
@@ -57,7 +63,7 @@ app.get("/test-location", async (req, res) => {
         .json({
           err: e,
           key: keys.EXTREME_IP_LOOKUP_KEY,
-          ip: req.socket.remoteAddress,
+          ip,
         })
         .end();
     });
