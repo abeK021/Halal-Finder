@@ -39,13 +39,26 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 app.get("/restaurant", routes.getClickedRestaurant);
 
 app.get("/test-location", async (req, res) => {
-  const locationData = await axios.get(
-    `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
-  );
-
-  res.json({
-    locationData,
-  });
+  axios
+    .get(
+      `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
+    )
+    .then((r) => {
+      res
+        .json({
+          results: r.data,
+          key: keys.EXTREME_IP_LOOKUP_KEY,
+        })
+        .end();
+    })
+    .catch((e) => {
+      res
+        .json({
+          err: e,
+          key: keys.EXTREME_IP_LOOKUP_KEY,
+        })
+        .end();
+    });
 });
 
 if (process.env.NODE_ENV === "production") {
