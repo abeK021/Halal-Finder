@@ -38,7 +38,7 @@ app.get("/restaurants", routes.getSearchedCityRestaurants);
 // clicked resturant
 app.get("/restaurant", routes.getClickedRestaurant);
 
-app.get("/test-location", async () => {
+app.get("/test-location", async (req, res) => {
   const locationData = await axios.get(
     `https://extreme-ip-lookup.com/json/?key=${keys.EXTREME_IP_LOOKUP_KEY}`
   );
