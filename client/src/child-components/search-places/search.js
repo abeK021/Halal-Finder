@@ -12,6 +12,7 @@ import { states } from "../../Utils/data";
 import { getSearchedCityRestaurant } from "../../actions/actions-index";
 
 import "./search.css";
+import AutoComplete from "./autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,16 +28,14 @@ const Search = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
+  const [autoCompleteCity, setAutocompleteCity] = useState();
 
-  const handleCityChange = (e) => setCity(e.target.value);
-  const handleStateChange = (e) => setState(e.target.value);
+  const handleInputChange = (value) => {
+    setAutocompleteCity(value);
+  };
 
   const onFormClick = () => {
-    setCity("");
-    setState("");
-    dispatch(getSearchedCityRestaurant(`${city} ${state}`));
+    dispatch(getSearchedCityRestaurant(`${autoCompleteCity}`));
   };
   console.log(process.env.REACT_APP_GOOGLE_PACES_API_KEY);
   return (
@@ -49,55 +48,23 @@ const Search = () => {
         className="search-container"
         justifyContent="center"
       >
-        <Grid xs={1} item>
+        <Grid xs={1} item spacing={2}>
           <InfoTooltip />
         </Grid>
-        <Grid
-          mb={20}
-          container
-          direction="row"
-          justifyContent="center"
-          spacing={3}
-        >
-          <Grid xs={4} item justify="center" spacing={2}>
-            <TextField
-              onChange={handleCityChange}
-              size="small"
-              label="Type City"
-              variant="standard"
-              id="standard-basic"
+        <Grid container direction="row" justifyContent="center">
+          <Grid item xs={8} className="search-box">
+            <AutoComplete onInputSet={handleInputChange} />
+          </Grid>
+          <Grid item xs={2} className="btn-primary-container search-box">
+            <Button
+              variant="contained"
               color="secondary"
-              value={city}
-              helperText=" "
+              className={`${classes.button} btn`}
+              startIcon={<SearchIcon size="small" />}
+              onClick={onFormClick}
+              style={{ height: "110%" }}
             />
           </Grid>
-          <Grid xs={4} item>
-            <TextField
-              id="standard-select-state"
-              select
-              label="Select"
-              value={state}
-              onChange={handleStateChange}
-              variant="standard"
-              helperText="Select state"
-            >
-              {states.map((option) => (
-                <MenuItem key={option.name} value={option.abbreviation}>
-                  {option.abbreviation}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-        </Grid>
-        <Grid item xs={10} s={6} md={4} lg={2}>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={`${classes.button} btn`}
-            startIcon={<SearchIcon size="small" />}
-            style={{ marginTop: "10px", minWidth: "80%" }}
-            onClick={onFormClick}
-          />
         </Grid>
       </Grid>
     </Grid>

@@ -1,5 +1,4 @@
 .search-container {
-  border: 1px solid red;
   padding: 1rem;
 }
 
@@ -11,4 +10,16 @@
     margin: 0 auto;
     max-width: 50vw;
   }
+}
+
+.btn-primary-container {
+  transform: translateY(-6px);
+}
+
+.MuiGrid-grid-xs-1 {
+  margin-bottom: 15px !important;
+}
+
+.search-box {
+  box-shadow: rgba(38, 57, 77, 0.7) 0px 20px 20px -10px;
 }

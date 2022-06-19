@@ -29,8 +29,8 @@ exports.getInitialRestaurants = async (req, res) => {
     `https://extreme-ip-lookup.com/json/${ip}?key=${keys.EXTREME_IP_LOOKUP_KEY}`
   );
 
-  let lat = Number(locationData.data.lat) || -73.935242;
-  let lng = Number(locationData.data.lon) || 40.73061;
+  let lat = Number(locationData.data.lat) || 40.7237;
+  let lng = Number(locationData.data.lon) || -73.9898;
   // const {
   //   data: { results },
   // } = await
@@ -43,7 +43,6 @@ exports.getInitialRestaurants = async (req, res) => {
         },
         key: keys.GOOGLE_PLACES_API_KEY,
         radius: 8000,
-
         keyword: "halal",
       },
     })
