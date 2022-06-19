@@ -71,10 +71,12 @@ exports.getInitialRestaurants = async (req, res) => {
 exports.getSearchedCityRestaurants = async (req, res) => {
   const client = new Client({});
 
-  const coords = await geocoder.geocode(`${req.query.city} ${req.query.state}`);
+  const coords = await geocoder.geocode(`${req.query.city_state} `);
 
   let lat = coords[0].latitude;
   let lng = coords[0].longitude;
+
+  let location = coords[0].formattedAddress;
 
   const { data } = await client.placesNearby({
     params: {
@@ -97,7 +99,7 @@ exports.getSearchedCityRestaurants = async (req, res) => {
         lat,
         lng,
       },
-      cityState: `${req.query.city}, ${req.query.state}`,
+      cityState: location,
     })
     .end();
 };
