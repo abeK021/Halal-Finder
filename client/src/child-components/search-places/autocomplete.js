@@ -11,11 +11,11 @@ const AutoComplete = ({ onInputSet }) => {
   const [autocompleteCities, setAutocompleteCities] = useState([]);
   const [autocompleteErr, setAutocompleteErr] = useState("");
 
-  const handleCityChange = async (e, v) => {
-    setCity(v);
+  const handleCityChange = async (e, value) => {
+    setCity(value);
     if (!city) return;
-    onInputSet(v);
-    const res = await fetchPlace(city, process.env.REACT_APP_MAP_API_KEY);
+    onInputSet(value);
+    const res = await fetchPlace(value, process.env.REACT_APP_MAP_API_KEY);
 
     !autocompleteCities.includes(e.target.value) &&
       res.features &&

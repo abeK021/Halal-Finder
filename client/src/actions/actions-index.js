@@ -5,6 +5,7 @@ import {
   PAGE_NUMBER,
   GET_RESTAURANT_INFO,
   SET_SHOW,
+  ERR_SEARCH,
 } from "./action-names";
 
 // GET INITIAL RESTDARAUTNTS FOR IP ADDRESS LOCATION
@@ -30,11 +31,17 @@ export const getSearchedCityRestaurant = async (cityState) => {
     // `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
     `/restaurants?city_state=${cityState}`
   );
-  debugger;
-  return {
-    type: GET_RESTAURANTS,
-    payload: data,
-  };
+  if (!data.err) {
+    return {
+      type: GET_RESTAURANTS,
+      payload: data,
+    };
+  } else {
+    return {
+      type: ERR_SEARCH,
+      payload: data,
+    };
+  }
 };
 
 //GET RESTARUARNT INFO

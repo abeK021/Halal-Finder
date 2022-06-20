@@ -2,6 +2,7 @@ import { TextField, Button, Grid, MenuItem } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 // import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 const Search = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const searchError = useSelector((state) => state.restaurants);
 
   const [autoCompleteCity, setAutocompleteCity] = useState();
 
@@ -67,6 +70,9 @@ const Search = () => {
           </Grid>
         </Grid>
       </Grid>
+      {searchError.error ? (
+        <div style={{ color: "red" }}>*{searchError.errorMessage}</div>
+      ) : null}
     </Grid>
   );
 };
