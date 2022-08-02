@@ -63,7 +63,7 @@ const MapViewTab = ({ center, zoom, locationError }) => {
       <div className="map row">
         <GoogleMapReact
           bootstrapURLKeys={{
-            key: "AIzaSyCHDyOVTfuBfgQePTaYwe6MkiN9jlN86Vk" /*process.env.REACT_APP_GOOGLE_MAPS_API_KEY*/,
+            key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
           }}
           center={cityLocation}
           defaultZoom={12}

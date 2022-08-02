@@ -10,12 +10,11 @@ import {
 
 // GET INITIAL RESTDARAUTNTS FOR IP ADDRESS LOCATION
 export const getRestaurantsBackEnd = async () => {
-  debugger;
   const { data } = await axios.get(
     // "/"
     "/home"
   );
-  debugger;
+
   return {
     type: GET_RESTAURANTS,
     payload: data,
@@ -24,9 +23,6 @@ export const getRestaurantsBackEnd = async () => {
 
 // GET SEARCHED CITY RESTAURANTS FORM SERVER
 export const getSearchedCityRestaurant = async (cityState) => {
-  debugger;
-  let [city, state] = cityState.split(" ");
-  debugger;
   const { data } = await axios.get(
     // `https://halal-finder021.herokuapp.com/?city=${city}&state=${state}`
     `/restaurants?city_state=${cityState}`
