@@ -4,4 +4,4 @@
 
 .vscode
 
-./config/dev.js
+/config/dev.js
