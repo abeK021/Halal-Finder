@@ -89,6 +89,7 @@ const MapViewTab = ({ center, zoom, locationError }) => {
           )}
         </GoogleMapReact>
       </div>
+      <h1>{String(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)}</h1>
       {activeRestaurant && <LocationInfoBox info={locationInfo} />}
     </Container>
   );
