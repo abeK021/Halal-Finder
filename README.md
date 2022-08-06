@@ -2,6 +2,7 @@
 
 Halal Finder is a Web App that will display halal restaurants in a city
 
+[View Live Site ](https://halal-finder021.herokuapp.com) * Heroku sleeps the server on inactivity so give it 10s to load.
 
 ## Usage
 
